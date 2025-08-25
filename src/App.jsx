@@ -1,18 +1,17 @@
-import { Route, Routes } from 'react-router-dom'
-import './App.css'
-import { LoginPage } from './pages/auth/LoginPage'
-import { RegistrationPage } from './pages/auth/RegistrationPage'
-import { ForgotPasswordPage } from './pages/auth/ForgotPasswordPage'
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import { publicRoutes, privateRoutes } from "./config/routesConfig";
 
 function App() {
+  const allRoutes = [...publicRoutes, ...privateRoutes];
 
   return (
     <Routes>
-      <Route path={"/"} element={<LoginPage/>}/>
-      <Route path={"/register"} element={<RegistrationPage/>}/>
-      <Route path={"/forget/password"} element={<ForgotPasswordPage/>}/>
+      {allRoutes.map((route, index) => (
+        <Route key={index} path={route.path} element={route.element} />
+      ))}
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;
