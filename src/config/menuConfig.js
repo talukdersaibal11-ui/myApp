@@ -49,8 +49,8 @@ export const menuItems = [
     name: "Category",
     icon: FolderTree,
     children: [
-      { name: "Add Category", route: "/category/add" },
-      { name: "All Category", route: "/category/all" },
+      { name: "Add Category", route: "/add/category" },
+      { name: "All Category", route: "/all/category" },
     ],
   },
   {

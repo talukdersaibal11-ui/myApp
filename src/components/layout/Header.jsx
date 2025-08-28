@@ -1,12 +1,23 @@
 import { Bell, Mail, User, Settings, LogOut } from "lucide-react";
 import { useState } from "react";
+import { logout } from "../../features/authSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
-  const [openMenu, setOpenMenu] = useState(null); // "messages", "notifications", "user"
+  const [openMenu, setOpenMenu] = useState(null);
+
+  const dispatch = useDispatch();
+  const navigate  = useNavigate();
 
   const toggleMenu = (menu) => {
     setOpenMenu(openMenu === menu ? null : menu);
   };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate ("/");
+  }
 
   return (
     <header className="bg-white shadow-sm px-6 py-3 flex justify-between items-center relative">
@@ -85,7 +96,7 @@ export const Header = () => {
                 <li className="flex items-center space-x-2 p-3 hover:bg-gray-100 cursor-pointer">
                   <Settings size={18} /> <span>Settings</span>
                 </li>
-                <li className="flex items-center space-x-2 p-3 hover:bg-gray-100 cursor-pointer text-red-500">
+                <li className="flex items-center space-x-2 p-3 hover:bg-gray-100 cursor-pointer text-red-500" onClick={handleLogout}>
                   <LogOut size={18} /> <span>Logout</span>
                 </li>
               </ul>
