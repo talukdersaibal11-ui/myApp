@@ -10,6 +10,7 @@ import { AddProductPage } from "../pages/product/AddProductPage";
 import { AllProductPage } from "../pages/product/AllProductPage";
 import { AddSalePage } from "../pages/sale/AddSalePage";
 import { AddSubCategoryPage } from "../pages/subcategory/AddSubCategoryPage";
+import { AllSubCategoryPage } from "../pages/subcategory/AllSubCategoryPage";
 
 export const publicRoutes = [
     {path: "/", element:<LoginPage/> },
@@ -22,6 +23,7 @@ export const privateRoutes = [
     {path: "/add/category", element: <AddCategoryPage/>},
     {path: "/all/category", element: <AllCategoryPage/>},
     {path: "/add/subcategory", element: <AddSubCategoryPage/>},
+    {path: "/all/subcategory", element: <AllSubCategoryPage/>},
     {path: "/add/showroom", element: <AddGodownPage/>},
     {path: "/all/showroom", element: <AllGodownPage/>},
     {path: "/add/product", element: <AddProductPage/>},

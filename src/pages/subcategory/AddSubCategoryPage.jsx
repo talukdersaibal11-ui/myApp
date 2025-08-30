@@ -5,6 +5,7 @@ import { createSubCategory } from "../../features/subCategorySlice";
 import { fetchCategories } from "../../features/categorySlice";
 import { toast } from "react-toastify";
 
+
 export const AddSubCategoryPage = () => {
   const dispatch = useDispatch();
 
@@ -42,7 +43,7 @@ export const AddSubCategoryPage = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+      <div className="bg-gray-100 flex px-4">
         <div className="bg-white rounded-2xl shadow-lg w-full max-w-md p-6">
           <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
             Add Subcategory
