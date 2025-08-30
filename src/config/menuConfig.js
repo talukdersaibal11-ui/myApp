@@ -15,7 +15,6 @@ import {
   ClipboardList,
   Truck,
   ShoppingCart,
-  RotateCcw,
   FileText,
   AlertTriangle,
   BarChart3,
@@ -57,8 +56,8 @@ export const menuItems = [
     name: "Sub Category",
     icon: Layers,
     children: [
-      { name: "Add Sub Category", route: "/subcategory/add" },
-      { name: "All Sub Category", route: "/subcategory/all" },
+      { name: "Add Sub Category", route: "/add/subcategory" },
+      { name: "All Sub Category", route: "/all/subcategory" },
     ],
   },
   {

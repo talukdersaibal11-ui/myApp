@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { fetchGodowns } from "../../../features/godownSlice"
 
 export const Godown = () => {
+    const dispatch = useDispatch();
 
     const [formData, setFormData] = useState({
         name: "",
@@ -18,8 +22,7 @@ export const Godown = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form Data:", formData);
-        // submit to API or backend here
+        dispatch(fetchGodowns({formData}));
     };
 
     return (

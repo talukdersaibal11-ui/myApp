@@ -2,14 +2,23 @@ import { Layout } from "../../components/layout/Layout";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createCategory } from "../../features/categorySlice"
+import { toast } from "react-toastify";
 
 export const AddCategoryPage = () => {
-  const [categoryName, setCategoryName] = useState("");
+  const [name, setCategoryName] = useState("");
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createCategory(categoryName))
+    dispatch(createCategory({name}))
+    .unwrap()
+    .then((res) => {
+      toast.success(res.message || "Category Created Successfully");
+      setCategoryName("");
+    })
+    .catch((err) => {
+      toast.error(err || "Something went wrong!");
+    });
   };
 
   return (
@@ -23,15 +32,16 @@ export const AddCategoryPage = () => {
             {/* Category Name */}
             <div>
               <label
-                htmlFor="categoryName"
+                htmlFor="name"
                 className="block text-gray-700 font-medium mb-2"
               >
                 Category Name
               </label>
               <input
                 type="text"
-                id="categoryName"
-                value={categoryName}
+                name="name"
+                id="name"
+                value={name}
                 onChange={(e) => setCategoryName(e.target.value)}
                 placeholder="Enter category name"
                 className="w-full px-4 py-2 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500"
