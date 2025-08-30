@@ -1,6 +1,7 @@
 import { ForgotPasswordPage } from "../pages/auth/ForgotPasswordPage";
 import { LoginPage } from "../pages/auth/LoginPage";
 import { RegistrationPage } from "../pages/auth/RegistrationPage";
+import { AddCategoryPage } from "../pages/category/AddCategoryPage";
 import { DashboardPage } from "../pages/DashboardPage";
 import { AddGodownPage } from "../pages/godown/AddGodownPage";
 import { AllGodownPage } from "../pages/godown/AllGodownPage";
@@ -16,6 +17,7 @@ export const publicRoutes = [
 
 export const privateRoutes = [
     {path: "/home", element: <DashboardPage/>},
+    {path: "/add/category", element: <AddCategoryPage/>},
     {path: "/add/showroom", element: <AddGodownPage/>},
     {path: "/all/showroom", element: <AllGodownPage/>},
     {path: "/add/product", element: <AddProductPage/>},

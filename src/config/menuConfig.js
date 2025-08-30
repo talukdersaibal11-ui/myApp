@@ -31,7 +31,7 @@ export const menuItems = [
   {
     name: "Dashboard",
     icon: Home,
-    route: "/dashboard",
+    route: "/home",
     type: "protected",
   },
   {
