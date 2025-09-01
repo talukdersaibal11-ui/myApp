@@ -71,8 +71,8 @@ export const menuItems = [{
         name: "Department",
         icon: Briefcase,
         children: [
-            { name: "Add Department", route: "/department/add" },
-            { name: "All Department", route: "/department/all" },
+            { name: "Add Department", route: "/add/department" },
+            { name: "All Department", route: "/all/department" },
         ],
     },
     {
