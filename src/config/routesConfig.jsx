@@ -8,6 +8,9 @@ import { DashboardPage } from "../pages/DashboardPage";
 import { AddDepartmentPage } from "../pages/department/AddDepartmentPage";
 import { AllDepartmentPage } from "../pages/department/AllDepartmentPage";
 import { EditDepartmentPage } from "../pages/department/EditDepartmentPage";
+import { AddDesignationPage } from "../pages/designation/AddDesignationPage";
+import { AllDesignationPage } from "../pages/designation/AllDesignationPage";
+import { EditDesignationPage } from "../pages/designation/EditDesignationPage";
 import { AddGodownPage } from "../pages/godown/AddGodownPage";
 import { AllGodownPage } from "../pages/godown/AllGodownPage";
 import { AddProductPage } from "../pages/product/AddProductPage";
@@ -35,6 +38,11 @@ export const privateRoutes = [
     {path: "/all/department", element: <AllDepartmentPage/>},
     {path: "/add/department", element: <AddDepartmentPage/>},
     {path: "/edit/department/:id", element: <EditDepartmentPage/>},
+
+
+    {path: "/add/designation", element: <AddDesignationPage/>},
+    {path: "/all/designation", element: <AllDesignationPage/>},
+    {path: "/edit/designation/:id", element: <EditDesignationPage/>},
 
     {path: "/add/showroom", element: <AddGodownPage/>},
     {path: "/all/showroom", element: <AllGodownPage/>},

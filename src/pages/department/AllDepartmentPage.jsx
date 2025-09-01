@@ -1,53 +1,57 @@
 import { Layout } from "../../components/layout/Layout";
 import { useEffect, useState } from "react";
 import { Pencil, Trash2 } from "lucide-react";
-import { fetchDepartments, deleteDepartment, createDepartment } from "../../features/departmentSlice";
+import {
+  fetchDepartments,
+  deleteDepartment,
+  createDepartment,
+} from "../../features/departmentSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 export const AllDepartmentPage = () => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const [search, setSearch] = useState("");
-    const [name, setName] = useState("");
-    const dispatch = useDispatch();
+  const [search, setSearch] = useState("");
+  const [name, setName] = useState("");
+  const dispatch = useDispatch();
 
-    const departments = useSelector((state) => state.department.departments);
+  const departments = useSelector((state) => state.department.departments);
 
-    const safeDepartments = Array.isArray(departments) ? departments : [];
+  const safeDepartments = Array.isArray(departments) ? departments : [];
 
-    const filteredDepartments = safeDepartments.filter((dept) =>
-        dept.name.toLowerCase().includes(search.toLowerCase())
-    );
+  const filteredDepartments = safeDepartments.filter((dept) =>
+    dept.name.toLowerCase().includes(search.toLowerCase())
+  );
 
-    useEffect(() => {
-        dispatch(fetchDepartments());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchDepartments());
+  }, [dispatch]);
 
-    const handleDelete = (deptId) => {
-        Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#d33",
-        cancelButtonColor: "#3085d6",
-        confirmButtonText: "Yes, delete it!",
-        }).then((result) => {
-        if (result.isConfirmed) {
-            dispatch(deleteDepartment(deptId));
-            Swal.fire("Deleted!", "Department has been deleted.", "success");
-        }
-        });
-    };
+  const handleDelete = (deptId) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteDepartment(deptId));
+        Swal.fire("Deleted!", "Department has been deleted.", "success");
+      }
+    });
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        dispatch(createDepartment({name}));
-        setIsModalOpen(false);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(createDepartment({ name }));
+    setIsModalOpen(false);
+  };
 
   return (
     <Layout>
@@ -59,10 +63,16 @@ export const AllDepartmentPage = () => {
               All Departments
             </h2>
             <div className="flex gap-3 mt-4 sm:mt-0">
-              <button className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition" onClick={() => setIsModalOpen(true)}>
+              <button
+                className="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700 transition"
+                onClick={() => setIsModalOpen(true)}
+              >
                 + Add Department
               </button>
-              <Link to={"/add/department"} className="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition"> 
+              <Link
+                to={"/add/department"}
+                className="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300 transition"
+              >
                 ⬅ Back
               </Link>
             </div>
@@ -101,11 +111,17 @@ export const AllDepartmentPage = () => {
                       <td className="py-3 px-6 text-center">
                         <div className="flex justify-center gap-3">
                           {/* Edit Button */}
-                          <Link to={`/edit/department/${dept.id}`} className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition">
+                          <Link
+                            to={`/edit/department/${dept.id}`}
+                            className="p-2 rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200 transition"
+                          >
                             <Pencil className="w-5 h-5" />
                           </Link>
                           {/* Delete Button */}
-                          <button className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition" onClick={() => handleDelete(dept.id)}>
+                          <button
+                            className="p-2 rounded-lg bg-red-100 text-red-600 hover:bg-red-200 transition"
+                            onClick={() => handleDelete(dept.id)}
+                          >
                             <Trash2 className="w-5 h-5" />
                           </button>
                         </div>
@@ -128,38 +144,37 @@ export const AllDepartmentPage = () => {
         </div>
 
         {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6 relative">
-            {/* Close button */}
-            <button
-              onClick={() => setIsModalOpen(false)}
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-            >
-              ✕
-            </button>
-
-            {/* Modal content */}
-            <h2 className="text-xl font-bold mb-4">Add Department</h2>
-            <form className="space-y-4" onSubmit={handleSubmit}>
-              <input
-                type="text"
-                placeholder="Department Name"
-                name="name"
-                onChange={(e) => setName(e.target.value)}
-                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none"
-              />
-              <br/>
+          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+            <div className="bg-white rounded-lg shadow-xl w-full max-w-md p-6 relative">
+              {/* Close button */}
               <button
-                type="submit"
-                className="w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition"
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
               >
-                Save
+                ✕
               </button>
-            </form>
-          </div>
-        </div>
-      )}
 
+              {/* Modal content */}
+              <h2 className="text-xl font-bold mb-4">Add Department</h2>
+              <form className="space-y-4" onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  placeholder="Department Name"
+                  name="name"
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none"
+                />
+                <br />
+                <button
+                  type="submit"
+                  className="w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition"
+                >
+                  Save
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </Layout>
   );

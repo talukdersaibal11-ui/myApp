@@ -79,8 +79,8 @@ export const menuItems = [{
         name: "Designation",
         icon: UserCheck,
         children: [
-            { name: "Add Designation", route: "/designation/add" },
-            { name: "All Designation", route: "/designation/all" },
+            { name: "Add Designation", route: "/add/designation" },
+            { name: "All Designation", route: "/all/designation" },
         ],
     },
     {
