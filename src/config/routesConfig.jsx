@@ -1,6 +1,7 @@
 import { ForgotPasswordPage } from "../pages/auth/ForgotPasswordPage";
 import { LoginPage } from "../pages/auth/LoginPage";
 import { RegistrationPage } from "../pages/auth/RegistrationPage";
+import { AddBrandPage } from "../pages/brand/AddBrandPage";
 import { AddCategoryPage } from "../pages/category/AddCategoryPage";
 import { AllCategoryPage } from "../pages/category/AllCategoryPage";
 import { DashboardPage } from "../pages/DashboardPage";
@@ -22,8 +23,12 @@ export const privateRoutes = [
     {path: "/home", element: <DashboardPage/>},
     {path: "/add/category", element: <AddCategoryPage/>},
     {path: "/all/category", element: <AllCategoryPage/>},
+
     {path: "/add/subcategory", element: <AddSubCategoryPage/>},
     {path: "/all/subcategory", element: <AllSubCategoryPage/>},
+
+    {path: "/add/brand", element: <AddBrandPage/>},
+
     {path: "/add/showroom", element: <AddGodownPage/>},
     {path: "/all/showroom", element: <AllGodownPage/>},
     {path: "/add/product", element: <AddProductPage/>},
