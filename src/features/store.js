@@ -5,6 +5,7 @@ import godownReducer from "./godownSlice"
 import categoryReducer from "./categorySlice"
 import departmentReducer from "./departmentSlice"
 import designationReducer from "./designationSlice"
+import brandReducer from "./brandSlice"
 
 export const store = configureStore({
   reducer: {
@@ -13,5 +14,6 @@ export const store = configureStore({
     category: categoryReducer,
     department: departmentReducer,
     designation: designationReducer,
+    brands: brandReducer,
   },
 });
