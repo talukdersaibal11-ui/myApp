@@ -26,7 +26,8 @@ import {
     Settings,
 } from "lucide-react";
 
-export const menuItems = [{
+export const menuItems = [
+    {
         name: "Dashboard",
         icon: Home,
         route: "/home",
@@ -43,30 +44,20 @@ export const menuItems = [{
             { name: "All Showroom Transaction", route: "/showroom/transaction/all" },
         ],
     },
+
+    // Product Manage Menu
     {
-        name: "Category",
+        name: "Catalog",
         icon: FolderTree,
         children: [
-            { name: "Add Category", route: "/add/category" },
-            { name: "All Category", route: "/all/category" },
+            { name: "Categories", route: "/categories" },
+            { name: "Sub Categories", route: "/subcategories" },
+            { name: "Brands", route: "/brands" },
+            { name: "Sizes", route: "/sizes" },
         ],
     },
-    {
-        name: "Sub Category",
-        icon: Layers,
-        children: [
-            { name: "Add Sub Category", route: "/add/subcategory" },
-            { name: "All Sub Category", route: "/all/subcategory" },
-        ],
-    },
-    {
-        name: "Brand",
-        icon: Tags,
-        children: [
-            { name: "Add Brand", route: "/add/brand" },
-            { name: "All Brand", route: "/all/brand" },
-        ],
-    },
+    // Product Manage Menu
+
     {
         name: "Department",
         icon: Briefcase,
@@ -83,6 +74,7 @@ export const menuItems = [{
             { name: "All Designation", route: "/all/designation" },
         ],
     },
+    
     {
         name: "Product",
         icon: Package,

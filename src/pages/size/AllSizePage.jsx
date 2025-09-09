@@ -1,72 +1,8 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Layout } from "../../components/layout/Layout";
-import {
-  fetchBrands,
-  updateBrand,
-  deleteBrand,
-} from "../../features/brandSlice.js";
-import { Pencil, Trash2, X, Plus } from "lucide-react";
-import Swal from "sweetalert2";
 
-export const AllBrandPage = () => {
-  const dispatch = useDispatch();
-  const { brands, loading, error } = useSelector((state) => state.brands);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedBrand, setSelectedBrand] = useState({ id: null, name: "" });
-  const [isNew, setIsNew] = useState(false);
-
-  useEffect(() => {
-    dispatch(fetchBrands());
-  }, [dispatch]);
-
-  const handleEdit = (brand) => {
-    setSelectedBrand({ id: brand.id, name: brand.name });
-    setIsNew(false);
-    setIsModalOpen(true);
-  };
-
-  const handleAdd = () => {
-    setSelectedBrand({ id: null, name: "" });
-    setIsNew(true);
-    setIsModalOpen(true);
-  };
-
-  const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(deleteBrand(id));
-        Swal.fire("Deleted!", "Brand has been deleted.", "success");
-      }
-    });
-  };
-
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    if (!selectedBrand.name.trim()) return;
-
-    if (isNew) {
-      // If you have an addBrand action, use it here
-      console.log("Adding new brand:", selectedBrand);
-      // dispatch(addBrand(selectedBrand));
-    } else {
-      dispatch(updateBrand(selectedBrand));
-    }
-
-    setIsModalOpen(false);
-  };
-
-  return (
-    <Layout>
+export const AllSizePage = () => {
+    return (
+        <Layout>
       <div className="p-6">
         {/* Header + Add Button */}
         <div className="flex items-center justify-between mb-6">
@@ -180,5 +116,5 @@ export const AllBrandPage = () => {
         )}
       </div>
     </Layout>
-  );
-};
+    );
+}

@@ -1,9 +1,7 @@
 import { ForgotPasswordPage } from "../pages/auth/ForgotPasswordPage";
 import { LoginPage } from "../pages/auth/LoginPage";
 import { RegistrationPage } from "../pages/auth/RegistrationPage";
-import { AddBrandPage } from "../pages/brand/AddBrandPage";
 import { AllBrandPage } from "../pages/brand/AllBrandPage";
-import { AddCategoryPage } from "../pages/category/AddCategoryPage";
 import { AllCategoryPage } from "../pages/category/AllCategoryPage";
 import { DashboardPage } from "../pages/DashboardPage";
 import { AddDepartmentPage } from "../pages/department/AddDepartmentPage";
@@ -17,7 +15,7 @@ import { AllGodownPage } from "../pages/godown/AllGodownPage";
 import { AddProductPage } from "../pages/product/AddProductPage";
 import { AllProductPage } from "../pages/product/AllProductPage";
 import { AddSalePage } from "../pages/sale/AddSalePage";
-import { AddSubCategoryPage } from "../pages/subcategory/AddSubCategoryPage";
+import { AllSizePage } from "../pages/size/AllSizePage";
 import { AllSubCategoryPage } from "../pages/subcategory/AllSubCategoryPage";
 
 export const publicRoutes = [
@@ -28,14 +26,13 @@ export const publicRoutes = [
 
 export const privateRoutes = [
     {path: "/home", element: <DashboardPage/>},
-    {path: "/add/category", element: <AddCategoryPage/>},
-    {path: "/all/category", element: <AllCategoryPage/>},
 
-    {path: "/add/subcategory", element: <AddSubCategoryPage/>},
-    {path: "/all/subcategory", element: <AllSubCategoryPage/>},
-
-    {path: "/add/brand", element: <AddBrandPage/>},
-    {path: "/all/brand", element: <AllBrandPage/>},
+    // Product Manage
+    {path: "/categories", element: <AllCategoryPage/>},
+    {path: "/subcategories", element: <AllSubCategoryPage/>},
+    {path: "/brands", element: <AllBrandPage/>},
+    {path: "/sizes", element: <AllSizePage/>},
+    //Product Manage
 
     {path: "/all/department", element: <AllDepartmentPage/>},
     {path: "/add/department", element: <AddDepartmentPage/>},
@@ -45,6 +42,7 @@ export const privateRoutes = [
     {path: "/add/designation", element: <AddDesignationPage/>},
     {path: "/all/designation", element: <AllDesignationPage/>},
     {path: "/edit/designation/:id", element: <EditDesignationPage/>},
+
 
     {path: "/add/showroom", element: <AddGodownPage/>},
     {path: "/all/showroom", element: <AllGodownPage/>},
