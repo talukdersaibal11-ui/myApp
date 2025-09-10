@@ -2,12 +2,14 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Layout } from "../../components/layout/Layout";
 import {
+  createBrand,
   fetchBrands,
   updateBrand,
   deleteBrand,
 } from "../../features/brandSlice.js";
 import { Pencil, Trash2, X, Plus } from "lucide-react";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 export const AllBrandPage = () => {
   const dispatch = useDispatch();
@@ -55,13 +57,24 @@ export const AllBrandPage = () => {
     if (!selectedBrand.name.trim()) return;
 
     if (isNew) {
-      // If you have an addBrand action, use it here
-      console.log("Adding new brand:", selectedBrand);
-      // dispatch(addBrand(selectedBrand));
+      dispatch(createBrand(selectedBrand))
+        .unwrap()
+        .then(() => {
+          toast.success("Brand created successfully!");
+        })
+        .catch(() => {
+          toast.error("Failed to create brand.");
+        });
     } else {
-      dispatch(updateBrand(selectedBrand));
+      dispatch(updateBrand(selectedBrand))
+        .unwrap()
+        .then(() => {
+          toast.success("Brand updated successfully!");
+        })
+        .catch(() => {
+          toast.error("Failed to update brand.");
+        });
     }
-
     setIsModalOpen(false);
   };
 
@@ -80,9 +93,7 @@ export const AllBrandPage = () => {
           </button>
         </div>
 
-        {loading && (
-          <div className="text-center text-gray-600">Loading...</div>
-        )}
+        {loading && <div className="text-center text-gray-600">Loading...</div>}
         {error && <div className="text-center text-red-600">{error}</div>}
 
         {!loading && !error && brands.length > 0 ? (
@@ -103,10 +114,7 @@ export const AllBrandPage = () => {
               </thead>
               <tbody>
                 {brands.map((brand) => (
-                  <tr
-                    key={brand.id}
-                    className="hover:bg-gray-50 transition"
-                  >
+                  <tr key={brand.id} className="hover:bg-gray-50 transition">
                     <td className="px-6 py-4 text-sm text-gray-700 border border-gray-300">
                       {brand.id}
                     </td>

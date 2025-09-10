@@ -1,20 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../api/api.js"
 
-export const createCategory = createAsyncThunk(
-    "category/addCategory",
-    async({ name }, { rejectWithValue }) => {
-        try {
-            const response = await api.post("/admin/category", { name });
-            return response.data;
-        } catch (error) {
-            return rejectWithValue(
-                "Something went wrong"
-            );
-        }
-    }
-);
-
 // ✅ Fetch all categories
 export const fetchCategories = createAsyncThunk(
     "category/fetchCategory",
@@ -23,7 +9,19 @@ export const fetchCategories = createAsyncThunk(
             const response = await api.get("/admin/category");
             return response.data;
         } catch (error) {
-            return thunkAPI.rejectWithValue("Error fetching categories");
+            return thunkAPI.rejectWithValue(error.data || "Error fetching categories");
+        }
+    }
+);
+
+export const fetchCategoryList = createAsyncThunk(
+    "category/fetchCategoryList",
+    async(_, thunkAPI) => {
+        try {
+            const response = await api.get("/admin/category/list");
+            return response.data.result.data;
+        } catch (error) {
+            return thunkAPI.rejectWithValue(error.data || "Something wen wrong");
         }
     }
 );
@@ -32,25 +30,12 @@ const categorySlice = createSlice({
     name: "category",
     initialState: {
         data: [],
+        list: [],
         loading: false,
         error: null,
     },
     reducers: {},
     extraReducers: (builder) => {
-        builder
-            .addCase(createCategory.pending, (state) => {
-                state.loading = true;
-                state.error = null;
-            })
-            .addCase(createCategory.fulfilled, (state, action) => {
-                state.data = action.payload;
-                state.loading = false;
-            })
-            .addCase(createCategory.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload || "Something went wrong";
-            })
-
         // Fetched Category
         builder
             .addCase(fetchCategories.pending, (state) => {
@@ -62,6 +47,20 @@ const categorySlice = createSlice({
                 state.data = action.payload.result.data;
             })
             .addCase(fetchCategories.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            });
+        // Fetched List
+        builder
+            .addCase(fetchCategoryList.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(fetchCategoryList.fulfilled, (state,action) => {
+                state.loading = false;
+                state.list = action.payload;
+            })
+            .addCase(fetchCategoryList.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
             });
