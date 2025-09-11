@@ -5,12 +5,8 @@ import { AllBrandPage } from "../pages/brand/AllBrandPage";
 import { AllCategoryPage } from "../pages/category/AllCategoryPage";
 import { ColorPage } from "../pages/color/ColorPage";
 import { DashboardPage } from "../pages/DashboardPage";
-import { AddDepartmentPage } from "../pages/department/AddDepartmentPage";
-import { AllDepartmentPage } from "../pages/department/AllDepartmentPage";
-import { EditDepartmentPage } from "../pages/department/EditDepartmentPage";
-import { AddDesignationPage } from "../pages/designation/AddDesignationPage";
-import { AllDesignationPage } from "../pages/designation/AllDesignationPage";
-import { EditDesignationPage } from "../pages/designation/EditDesignationPage";
+import { DepartmentPage } from "../pages/department/DepartmentPage";
+import { DesignationPage } from "../pages/designation/DesignationPage";
 import { AddGodownPage } from "../pages/godown/AddGodownPage";
 import { AllGodownPage } from "../pages/godown/AllGodownPage";
 import { AddProductPage } from "../pages/product/AddProductPage";
@@ -29,24 +25,19 @@ export const publicRoutes = [
 export const privateRoutes = [
     {path: "/home", element: <DashboardPage/>},
 
-    // Product Manage
+    // Product Route
     {path: "/categories", element: <AllCategoryPage/>},
     {path: "/subcategories", element: <AllSubCategoryPage/>},
     {path: "/brands", element: <AllBrandPage/>},
     {path: "/sizes", element: <AllSizePage/>},
     {path: "/colors", element: <ColorPage/>},
     {path: "/units", element: <UnitPage/>},
-    //Product Manage
+    //Product Route
 
-    {path: "/all/department", element: <AllDepartmentPage/>},
-    {path: "/add/department", element: <AddDepartmentPage/>},
-    {path: "/edit/department/:id", element: <EditDepartmentPage/>},
-
-
-    {path: "/add/designation", element: <AddDesignationPage/>},
-    {path: "/all/designation", element: <AllDesignationPage/>},
-    {path: "/edit/designation/:id", element: <EditDesignationPage/>},
-
+    // HRM Route
+    {path: "/departments", element: <DepartmentPage/>},
+    {path: "/designations", element: <DesignationPage/>},
+    //HRM Route
 
     {path: "/add/showroom", element: <AddGodownPage/>},
     {path: "/all/showroom", element: <AllGodownPage/>},

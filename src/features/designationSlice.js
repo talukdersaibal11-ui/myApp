@@ -6,7 +6,7 @@ export const createDesignation = createAsyncThunk(
     "designation/createDesignation",
     async (designationData) => {
         const response = await api.post("/admin/designation", designationData);
-        return response.data;
+        return response.data.result;
     }
 );
 
@@ -15,34 +15,25 @@ export const getAllDesignations = createAsyncThunk(
     "designation/getAllDesignations",
     async () => {
         const response = await api.get("/admin/designation");
-        return response.data;
-    }
-);
-
-// Get Designation by Id
-export const getDesignationById = createAsyncThunk(
-    "designation/getDesignationById",
-    async (id) => {
-        const response = await api.get(`/admin/designation/${id}`);
-        return response.data;
+        return response.data.result.data;
     }
 );
 
 //Update Designation
 export const updateDesignation = createAsyncThunk(
     "designation/updateDesignation",
-    async ({ id, name }) => {
-        const response = await api.put(`/admin/designation/${id}`, { name });
-        return response.data;
+    async ( data ) => {
+        const response = await api.put(`/admin/designation/${data.id}`, data);
+        return response.data.result;
     }
 );
 
 //Delete Designations
 export const deleteDesignation = createAsyncThunk(
     "designation/deleteDesignation",
-    async (designationId) => {
-        await api.delete(`/admin/designation/${designationId}`);
-        return designationId;
+    async (id) => {
+        await api.delete(`/admin/designation/${id}`);
+        return id;
     }
 );
 
@@ -50,7 +41,6 @@ const designationSlice = createSlice({
     name: "designation",
     initialState: {
         designations: [],
-        designation: null,
         loading: false,
         error: null,
     },
@@ -63,7 +53,7 @@ const designationSlice = createSlice({
             })
             .addCase(createDesignation.fulfilled, (state, action) => {
                 state.loading = false;
-                state.designations.push(action.payload.result);
+                state.designations.push(action.payload);
             })
             .addCase(createDesignation.rejected, (state, action) => {
                 state.loading = false;
@@ -77,23 +67,9 @@ const designationSlice = createSlice({
             })
             .addCase(getAllDesignations.fulfilled, (state, action) => {
                 state.loading = false;
-                state.designations = action.payload.result.data;
+                state.designations = action.payload;
             })
             .addCase(getAllDesignations.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error.message;
-            })
-
-        // Get Designation by Id
-        builder
-            .addCase(getDesignationById.pending, (state) => {
-                state.loading = true;
-            })
-            .addCase(getDesignationById.fulfilled, (state, action) => {
-                state.loading = false;
-                state.designation = action.payload.result;
-            })
-            .addCase(getDesignationById.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             })
@@ -106,10 +82,10 @@ const designationSlice = createSlice({
             .addCase(updateDesignation.fulfilled, (state, action) => {
                 state.loading = false;
                 const index = state.designations.findIndex(
-                    (desg) => desg.id === action.payload.result.id
+                    (designation) => designation.id === action.payload.id
                 );
                 if (index !== -1) {
-                    state.designations[index] = action.payload.result;
+                    state.designations[index] = action.payload;
                 }
             })
             .addCase(updateDesignation.rejected, (state, action) => {
@@ -120,7 +96,7 @@ const designationSlice = createSlice({
         // Delete Designation
         builder.addCase(deleteDesignation.fulfilled, (state, action) => {
             state.designations = state.designations.filter(
-                (desg) => desg.id !== action.payload
+                (designation) => designation.id !== action.payload
             );
         });
     },

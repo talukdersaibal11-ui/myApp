@@ -1,20 +1,21 @@
 import { Layout } from "../../components/layout/Layout";
 import { FaArrowLeft, FaPlus } from "react-icons/fa";
+import { Pencil, Trash2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchUnit, createUnit, updateUnit, deleteUnit } from "../../features/unitSlice";
-import { Pencil, Trash2 } from "lucide-react";
+import { fetchDepartments, createDepartment,updateDepartment,deleteDepartment } from "../../features/departmentSlice";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
-export const UnitPage = () => {
-    const navigate                          = useNavigate();
-    const dispatch                          = useDispatch();
-    const {units, loading, error}           = useSelector((state) => state.unit);
-    const [isModalOpen, setIsModalOpen]     = useState(false);
-    const [isNew, setIsNew]                 = useState(false);
-    const [ selectedUnit, setSelectedUnit ] = useState({id:null, name:"", symbol:""});
+export const DepartmentPage = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const { departments, loading, error } = useSelector((state) => state.department);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isNew, setIsNew] = useState(false);
+    const [selectedDepartment, setSelectedDepartment] = useState({id:null, name:""});
+
 
     const handleBack = () => {
         navigate("/home");
@@ -23,45 +24,45 @@ export const UnitPage = () => {
     const handleAdd = () => {
         setIsModalOpen(true);
         setIsNew(true);
-        setSelectedUnit({id:null, name:"", symbol:""});
+        setSelectedDepartment({id:null, name:""});
     }
 
     const handleEdit = (item) => {
         setIsModalOpen(true);
         setIsNew(false);
-        setSelectedUnit({id:item.id, name:item.name, symbol:item.symbol});
+        setSelectedDepartment({id:item.id, name:item.name});
     }
 
     useEffect(() => {
-        dispatch(fetchUnit());
-    }, [dispatch]);
+        dispatch(fetchDepartments());
+    }, [dispatch])
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         if(isNew){
-            dispatch(createUnit(selectedUnit))
+            dispatch(createDepartment(selectedDepartment))
             .unwrap()
             .then(() => {
                 setIsModalOpen(false);
                 setIsNew(false);
-                setSelectedUnit({id:null, name:"", symbol:""});
-                toast.success("Unit created successfully!");
+                setSelectedDepartment({id:null, name:""});
+                toast.success("Department created successfully!");
             })
             .catch((error) => {
-                toast.error(error.message || "Unit created failed!");
+                toast.error(error.message || "Department created failed!");
             });
         }else{
-            dispatch(updateUnit(selectedUnit))
+            dispatch(updateDepartment(selectedDepartment))
             .unwrap()
             .then(() => {
                 setIsModalOpen(false);
                 setIsNew(false);
-                setSelectedUnit({id:null, name:"", symbol:""});
-                toast.success("Unit updated successfully!");
+                setSelectedDepartment({id:null, name:""});
+                toast.success("Department updated successfully!");
             })
             .catch((error) => {
-                toast.error(error.message || "Unit updated failed!");
+                toast.error(error.message || "Department updated failed!");
             });
         }
     }
@@ -77,24 +78,24 @@ export const UnitPage = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-            dispatch(deleteUnit(id));
-            Swal.fire("Deleted!", "Unit has been deleted.", "success");
+            dispatch(deleteDepartment(id));
+                Swal.fire("Deleted!", "Department has been deleted.", "success");
             }
         });
     }
 
-    return(
+    return (
         <>
             <Layout>
                 <div style={{backgroundColor:"#fff", boxShadow:"rgba(0, 0, 0, 0.16) 0px 1px 4px;;", borderRadius:"4px", padding:"10px"}}>
                     <div style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
                         <div>
-                            <h2>Units</h2>
+                            <h2>Departments</h2>
                         </div>
                         <div style={{display:"flex", alignItems:"center"}}>
                             <button onClick={handleAdd} className="btn btn-sm btn-primary" style={{marginRight:"10px", display:"flex", alignItems:"center"}}>
                                 <FaPlus/>
-                                Add Unit
+                                Add New
                             </button>
                             <button className="btn btn-sm btn-info text-white" style={{display:"flex", alignItems:"center"}} onClick={handleBack}>
                                 <FaArrowLeft /> Back
@@ -114,19 +115,15 @@ export const UnitPage = () => {
                             >
                                 <tr>
                                     <th scope="col">SL</th>
-                                    <th scope="col">Unit Name</th>
-                                    <th scope="col">Symbol</th>
+                                    <th scope="col">Department Name</th>
                                     <th scope="col">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {units.map((item, index) => (
+                                {departments.map((item, index) => (
                                     <tr key={item.id}>
                                         <td>{index + 1}</td>
                                         <td>{item.name}</td>
-                                        <td style={{textTransform: "uppercase"}}>
-                                            {item.symbol}
-                                        </td>
 
                                         <td>
                                             <button className="btn btn-sm btn-warning me-2" onClick={() => handleEdit(item)}>
@@ -149,19 +146,15 @@ export const UnitPage = () => {
                                 <div className="modal-content">
                                     <div className="modal-header">
                                         <h5 className="modal-title">
-                                            {isNew ? "Add Unit" : "Update Unit"}
+                                            {isNew ? "Add Department" : "Update Department"}
                                         </h5>
                                         <button type="button" className="btn-close" onClick={() => setIsModalOpen(false)}></button>
                                     </div>
                                     <form onSubmit={handleSubmit}>
                                         <div className="modal-body">
                                             <div className="mb-3">
-                                                <label className="form-label">Unit Name</label>
-                                                <input type="text" className="form-control" name="name" value={selectedUnit.name} onChange={(e) => setSelectedUnit({...selectedUnit, name: e.target.value})} required/>
-                                            </div>
-                                            <div className="mb-3">
-                                                <label className="form-label">Symbol</label>
-                                                <input type="text" className="form-control" name="symbol" value={selectedUnit.symbol} onChange={(e) => setSelectedUnit({...selectedUnit, symbol: e.target.value})} required/>
+                                                <label className="form-label">Department Name</label>
+                                                <input type="text" className="form-control" name="name" value={selectedDepartment.name} onChange={(e) => setSelectedDepartment({...selectedDepartment, name: e.target.value})} required/>
                                             </div>
                                         </div>
                                         <div className="modal-footer">
@@ -169,7 +162,7 @@ export const UnitPage = () => {
                                                 Close
                                             </button>
                                             <button type="submit" className="btn btn-primary">
-                                                {isNew ? "Save Unit" : "Update Unit"}
+                                                {isNew ? "Save Department" : "Update Department"}
                                             </button>
                                         </div>
                                     </form>

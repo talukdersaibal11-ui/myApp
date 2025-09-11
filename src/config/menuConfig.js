@@ -60,22 +60,16 @@ export const menuItems = [
     },
     // Product Manage Menu
 
+    // HRM MENU
     {
-        name: "Department",
-        icon: Briefcase,
+        name: "HRM",
+        icon: FolderTree,
         children: [
-            { name: "Add Department", route: "/add/department" },
-            { name: "All Department", route: "/all/department" },
+            { name: "Departments", route: "/departments" },
+            { name: "Designations", route: "/designations" },
         ],
     },
-    {
-        name: "Designation",
-        icon: UserCheck,
-        children: [
-            { name: "Add Designation", route: "/add/designation" },
-            { name: "All Designation", route: "/all/designation" },
-        ],
-    },
+    // HRM MENU
     
     {
         name: "Product",

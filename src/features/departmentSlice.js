@@ -6,7 +6,7 @@ export const createDepartment = createAsyncThunk(
     "department/createDepartment",
     async (departmentData) => {
         const response = await api.post("/admin/department", departmentData);
-        return response.data;
+        return response.data.result;
     }
 );
 
@@ -15,34 +15,25 @@ export const fetchDepartments = createAsyncThunk(
     "department/fetchDepartments",
     async () => {
         const response = await api.get("/admin/department");
-        return response.data;
-    }
-);
-
-// Single Department
-export const fetchSingleDepartment = createAsyncThunk(
-    "department/fetchSingleDepartment",
-    async (deptId) => {
-        const response = await api.get(`/admin/department/${deptId}`);
-        return response.data;
+        return response.data.result.data;
     }
 );
 
 // update department
 export const updateDepartment = createAsyncThunk(
     "department/updateDepartment",
-    async ({ id, data }) => {
-        const response = await api.put(`/admin/department/${id}`, data);
-        return response.data;
+    async (departmentData) => {
+        const response = await api.put(`/admin/department/${departmentData.id}`, departmentData);
+        return response.data.result;
     }
 );
 
 // Delete department
 export const deleteDepartment = createAsyncThunk(
     "department/deleteDepartment",
-    async (deptId) => {
-        await api.delete(`/admin/department/${deptId}`);
-        return deptId;
+    async (id) => {
+        await api.delete(`/admin/department/${id}`);
+        return id;
     }
 );
 
@@ -50,27 +41,25 @@ const departmentSlice = createSlice({
     name: "department",
     initialState: {
         departments: [],
-        department: null,
         loading: false,
         error: null
     },
     reducers: {},
     extraReducers: (builder) => {
         builder
-        .addCase(createDepartment.pending, (state) => {
-            state.loading = true;
-            state.error = null;
-        })
-        .addCase(createDepartment.fulfilled, (state, action) => {
-            state.loading = false;
-            state.departments.push(action.payload.result);
-        })
-        .addCase(createDepartment.rejected, (state, action) => {
-            state.loading = false;
-            state.error = action.error.message;
-        });
+            .addCase(createDepartment.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(createDepartment.fulfilled, (state, action) => {
+                state.loading = false;
+                state.departments.push(action.payload);
+            })
+            .addCase(createDepartment.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.error.message;
+            });
 
-        //Fetch Department
         builder
             .addCase(fetchDepartments.pending, (state) => {
                 state.loading = true;
@@ -78,24 +67,27 @@ const departmentSlice = createSlice({
             })
             .addCase(fetchDepartments.fulfilled, (state, action) => {
                 state.loading = false;
-                state.departments = action.payload.result.data;
+                state.departments = action.payload;
             })
             .addCase(fetchDepartments.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             });
 
-        // Fetch Single Department
         builder
-            .addCase(fetchSingleDepartment.pending, (state) => {
+            .addCase(updateDepartment.pending, (state) => {
                 state.loading = true;
                 state.error = null;
             })
-            .addCase(fetchSingleDepartment.fulfilled, (state, action) => {
+            .addCase(updateDepartment.fulfilled, (state, action) => {
                 state.loading = false;
                 state.department = action.payload.result;
+                const index = state.departments.findIndex((department) => department.id === action.payload.id);
+                if(index !== -1){
+                    state.departments[index] = action.payload;
+                }
             })
-            .addCase(fetchSingleDepartment.rejected, (state, action) => {
+            .addCase(updateDepartment.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error.message;
             });
