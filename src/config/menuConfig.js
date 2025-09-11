@@ -54,6 +54,8 @@ export const menuItems = [
             { name: "Sub Categories", route: "/subcategories" },
             { name: "Brands", route: "/brands" },
             { name: "Sizes", route: "/sizes" },
+            { name: "Colors", route: "/colors" },
+            { name: "Units", route: "/units" },
         ],
     },
     // Product Manage Menu

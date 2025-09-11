@@ -1,4 +1,3 @@
-// src/store/store.js
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./authSlice";
 import godownReducer from "./godownSlice"
@@ -8,6 +7,8 @@ import departmentReducer from "./departmentSlice"
 import designationReducer from "./designationSlice"
 import brandReducer from "./brandSlice"
 import sizeReducer from "./sizeSlice"
+import colorReducer from "./colorSlice"
+import unitReducer from "./unitSlice"
 
 export const store = configureStore({
   reducer: {
@@ -19,5 +20,7 @@ export const store = configureStore({
     designation: designationReducer,
     brands: brandReducer,
     size: sizeReducer,
+    color: colorReducer,
+    unit: unitReducer,
   },
 });
