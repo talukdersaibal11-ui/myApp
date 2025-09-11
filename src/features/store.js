@@ -10,6 +10,7 @@ import sizeReducer from "./sizeSlice"
 import colorReducer from "./colorSlice"
 import unitReducer from "./unitSlice"
 import leaveTypeReducer from "./leaveTypeSlice"
+import employeeReducer from "./employeeSlice"
 
 export const store = configureStore({
   reducer: {
@@ -24,5 +25,6 @@ export const store = configureStore({
     color      : colorReducer,
     unit       : unitReducer,
     leaveType  : leaveTypeReducer,
+    employee   : employeeReducer,
   },
 });

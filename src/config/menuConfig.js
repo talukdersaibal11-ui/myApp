@@ -68,6 +68,7 @@ export const menuItems = [
             { name: "Departments", route: "/departments" },
             { name: "Designations", route: "/designations" },
             { name: "Leave Type", route: "/leaves/type" },
+            { name: "Employees", route: "/employees" },
         ],
     },
     // HRM MENU

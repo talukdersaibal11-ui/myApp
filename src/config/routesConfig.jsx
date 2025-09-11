@@ -7,6 +7,9 @@ import { ColorPage } from "../pages/color/ColorPage";
 import { DashboardPage } from "../pages/DashboardPage";
 import { DepartmentPage } from "../pages/department/DepartmentPage";
 import { DesignationPage } from "../pages/designation/DesignationPage";
+import { AddEmployeePage } from "../pages/employee/AddEmployeePage";
+import { AllEmployeePage } from "../pages/employee/AllEmployeePage";
+import { EditEmployeePage } from "../pages/employee/EditEmployeePage";
 import { AddGodownPage } from "../pages/godown/AddGodownPage";
 import { AllGodownPage } from "../pages/godown/AllGodownPage";
 import { LeaveTypePage } from "../pages/leaveType/LeaveTypePage";
@@ -39,6 +42,9 @@ export const privateRoutes = [
     {path: "/departments", element: <DepartmentPage/>},
     {path: "/designations", element: <DesignationPage/>},
     {path: "/leaves/type", element: <LeaveTypePage/>},
+    {path: "/employees", element: <AllEmployeePage/>},
+    {path: "/add/employee", element: <AddEmployeePage/>},
+    {path: "/edit/employee/:id", element: <EditEmployeePage/>},
     //HRM Route
 
     {path: "/add/showroom", element: <AddGodownPage/>},
