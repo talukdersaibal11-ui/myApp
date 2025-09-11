@@ -9,18 +9,20 @@ import brandReducer from "./brandSlice"
 import sizeReducer from "./sizeSlice"
 import colorReducer from "./colorSlice"
 import unitReducer from "./unitSlice"
+import leaveTypeReducer from "./leaveTypeSlice"
 
 export const store = configureStore({
   reducer: {
-    auth: authReducer,
-    godown: godownReducer,
-    category: categoryReducer,
+    auth       : authReducer,
+    godown     : godownReducer,
+    category   : categoryReducer,
     subcategory: subCategoryReducer,
-    department: departmentReducer,
+    department : departmentReducer,
     designation: designationReducer,
-    brands: brandReducer,
-    size: sizeReducer,
-    color: colorReducer,
-    unit: unitReducer,
+    brands     : brandReducer,
+    size       : sizeReducer,
+    color      : colorReducer,
+    unit       : unitReducer,
+    leaveType  : leaveTypeReducer,
   },
 });

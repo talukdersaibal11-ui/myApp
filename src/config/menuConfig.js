@@ -67,6 +67,7 @@ export const menuItems = [
         children: [
             { name: "Departments", route: "/departments" },
             { name: "Designations", route: "/designations" },
+            { name: "Leave Type", route: "/leaves/type" },
         ],
     },
     // HRM MENU

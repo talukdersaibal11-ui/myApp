@@ -9,6 +9,7 @@ import { DepartmentPage } from "../pages/department/DepartmentPage";
 import { DesignationPage } from "../pages/designation/DesignationPage";
 import { AddGodownPage } from "../pages/godown/AddGodownPage";
 import { AllGodownPage } from "../pages/godown/AllGodownPage";
+import { LeaveTypePage } from "../pages/leaveType/LeaveTypePage";
 import { AddProductPage } from "../pages/product/AddProductPage";
 import { AllProductPage } from "../pages/product/AllProductPage";
 import { AddSalePage } from "../pages/sale/AddSalePage";
@@ -37,6 +38,7 @@ export const privateRoutes = [
     // HRM Route
     {path: "/departments", element: <DepartmentPage/>},
     {path: "/designations", element: <DesignationPage/>},
+    {path: "/leaves/type", element: <LeaveTypePage/>},
     //HRM Route
 
     {path: "/add/showroom", element: <AddGodownPage/>},
