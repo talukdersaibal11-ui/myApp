@@ -1,16 +1,15 @@
-import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { FaArrowLeft, FaRegEye } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 import { Layout } from "../../components/layout/Layout";
 import { getSingleEmployee } from "../../features/employeeSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
 
 export const EditEmployeePage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { id }   = useParams();
-    const { employee } = useSelector((state) => state.employee);
+    // const { employee } = useSelector((state) => state.employee);
 
     const handleAdd = () => {
         navigate("/employees");
