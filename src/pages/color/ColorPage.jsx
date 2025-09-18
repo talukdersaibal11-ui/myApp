@@ -1,12 +1,11 @@
+import { Pencil, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Layout } from "../../components/layout/Layout";
 import { FaArrowLeft, FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchColors, createColor, deleteColor, updateColor } from "../../features/colorSlice";
-import { Pencil, Trash2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+import { Layout } from "../../components/layout/Layout";
 
 export const ColorPage = () => {
     const dispatch                          = useDispatch();

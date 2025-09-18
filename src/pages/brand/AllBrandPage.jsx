@@ -1,15 +1,9 @@
-import { useState, useEffect } from "react";
+import { Pencil, Plus, Trash2, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Layout } from "../../components/layout/Layout";
-import {
-  createBrand,
-  fetchBrands,
-  updateBrand,
-  deleteBrand,
-} from "../../features/brandSlice.js";
-import { Pencil, Trash2, X, Plus } from "lucide-react";
-import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import { Layout } from "../../components/layout/Layout";
 
 export const AllBrandPage = () => {
   const dispatch = useDispatch();

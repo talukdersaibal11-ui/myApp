@@ -3,7 +3,6 @@ import { FaArrowLeft, FaRegEye } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { Layout } from "../../components/layout/Layout";
-import { getSingleEmployee } from "../../features/employeeSlice";
 
 export const EditEmployeePage = () => {
     const navigate = useNavigate();

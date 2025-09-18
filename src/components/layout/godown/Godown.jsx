@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { fetchGodowns } from "../../../features/godownSlice"
 
 export const Godown = () => {
     const dispatch = useDispatch();

@@ -1,13 +1,9 @@
-import { useNavigate } from "react-router-dom";
-import { FaArrowLeft, FaRegEye } from "react-icons/fa";
-import { Layout } from "../../components/layout/Layout";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchDepartments } from "../../features/departmentSlice";
-import { getAllDesignations } from "../../features/designationSlice";
-import { createEmployee } from "../../features/employeeSlice";
-import { fetchGodowns } from "../../features/godownSlice";
 import { useEffect } from "react";
+import { FaArrowLeft, FaRegEye } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Layout } from "../../components/layout/Layout";
 
 export const AddEmployeePage = () => {
     const navigate = useNavigate();

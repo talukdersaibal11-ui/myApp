@@ -1,10 +1,9 @@
+import { Pencil, Plus, Trash2, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCategories } from "../../features/categorySlice";
-import { Layout } from "../../components/layout/Layout";
 import { toast } from "react-toastify";
 import api from "../../api/api";
-import { Plus, Pencil, Trash2, X } from "lucide-react";
+import { Layout } from "../../components/layout/Layout";
 
 export const AllCategoryPage = () => {
   const dispatch = useDispatch();

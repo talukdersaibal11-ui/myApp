@@ -1,11 +1,9 @@
+import { Pencil, Plus, Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Layout } from "../../components/layout/Layout";
-import { fetchCategoryList } from "../../features/categorySlice";
-import { fetchSubcategory, createSubCategory, updateSubCategory, deleteSubCategory } from "../../features/subCategorySlice";
 import { useDispatch, useSelector } from "react-redux";
-import { Pencil, Trash2, X, Plus } from "lucide-react";
-import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import { Layout } from "../../components/layout/Layout";
 
 export const AllSubCategoryPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

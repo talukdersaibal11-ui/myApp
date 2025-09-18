@@ -1,12 +1,11 @@
-import { Layout } from "../../components/layout/Layout";
-import { FaArrowLeft, FaPlus } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { fetchUnit, createUnit, updateUnit, deleteUnit } from "../../features/unitSlice";
 import { Pencil, Trash2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { FaArrowLeft, FaPlus } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { Layout } from "../../components/layout/Layout";
 
 export const UnitPage = () => {
     const navigate                          = useNavigate();

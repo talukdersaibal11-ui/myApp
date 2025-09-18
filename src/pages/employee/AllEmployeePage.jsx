@@ -1,11 +1,10 @@
+import { Eye, Pencil, Trash2 } from "lucide-react";
 import { FaArrowLeft, FaPlus } from "react-icons/fa";
-import { Pencil, Trash2, Eye  } from "lucide-react";
 
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { fetchEmployees } from "../../features/employeeSlice";
 import { Layout } from "../../components/layout/Layout";
 
 export const AllEmployeePage = () => {

@@ -1,8 +1,7 @@
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { AllGodown } from "../../components/layout/godown/AllGodown";
 import { Layout } from "../../components/layout/Layout";
-import { fetchGodowns } from "../../features/godownSlice";
-import { useDispatch, useSelector } from "react-redux";
 
 export const AllGodownPage = () => {
     const dispatch = useDispatch();

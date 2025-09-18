@@ -1,12 +1,11 @@
-import { FaArrowLeft, FaPlus } from "react-icons/fa";
 import { Pencil, Trash2 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { FaArrowLeft, FaPlus } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 
-import { createLeaveType, fetchLeaveType, deleteLeaveType, updateLeaveType } from "../../features/leaveTypeSlice";
 import { Layout } from "../../components/layout/Layout";
 
 export const LeaveTypePage = () => {
